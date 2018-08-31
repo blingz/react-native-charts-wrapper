@@ -227,7 +227,8 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
                 "moveViewToX", MOVE_VIEW_TO_X,
                 "moveViewToAnimated", MOVE_VIEW_TO_ANIMATED,
                 "fitScreen", FIT_SCREEN,
-                "highlights", HIGHLIGHTS);
+                "highlights", HIGHLIGHTS,
+                "changeZoom", CHANGE_ZOOM);
 
         if (commandsMap != null) {
             map.putAll(commandsMap);
@@ -264,6 +265,16 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
 
             case HIGHLIGHTS:
                 this.setHighlights(root, args.getArray(0));
+                return;
+
+            case CHANGE_ZOOM:
+                root.zoom(
+                    (float) args.getDouble(0) / root.getScaleX(),
+                    (float) args.getDouble(1) / root.getScaleY(),
+                    (float) args.getDouble(2),
+                    (float) args.getDouble(3),
+                    YAxis.AxisDependency.RIGHT
+                );
                 return;
         }
 
