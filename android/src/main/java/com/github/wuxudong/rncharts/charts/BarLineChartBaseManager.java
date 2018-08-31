@@ -273,7 +273,7 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
                     (float) args.getDouble(1) / root.getScaleY(),
                     (float) args.getDouble(2),
                     (float) args.getDouble(3),
-                    YAxis.AxisDependency.RIGHT
+                    "right".equalsIgnoreCase(args.getString(4)) ? YAxis.AxisDependency.RIGHT : YAxis.AxisDependency.LEFT
                 );
                 return;
         }
